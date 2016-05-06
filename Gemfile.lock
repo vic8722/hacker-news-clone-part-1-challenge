@@ -89,10 +89,7 @@ PLATFORMS
 DEPENDENCIES
   activerecord (~> 4.2.0)
   activesupport (~> 4.2.0)
-
-=======
   bcrypt
-643a2c9f7781a775f8de651ac8aab687b1b76b2d
   capybara
   factory_girl
   faker

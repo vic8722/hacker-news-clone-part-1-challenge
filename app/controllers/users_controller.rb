@@ -13,7 +13,7 @@ post '/login' do
      session[:username] = @user.username
      redirect "/users/#{@user.id}"
    else
-     redirect '/'
+     redirect '/login'
    end
  end
 
@@ -37,11 +37,7 @@ end
 
 get '/users/:id' do
   @user = User.find(params[:id])
-   if session[:user_id] == @user.id
-     erb :'users/show'
-   else
-     redirect '/login'
-   end
+  @tweets = @user.tweets
   erb :'users/show'
 end
 

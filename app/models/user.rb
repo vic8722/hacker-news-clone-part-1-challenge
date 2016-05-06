@@ -1,7 +1,8 @@
 class User < ActiveRecord::Base
   include BCrypt
   # Remember to create a migration!
-  has_many :tweets, through: :tweet_users
+  has_many :tweets_users
+  has_many :tweets, through: :tweets_users
 
   def password
     @password ||= Password.new(password_hash)

@@ -11,5 +11,18 @@
     <input type="submit" value="Logout">
   </form>
 <% end %>
+</div>
+
+<br><br>
+
+<div>
+<form action = '/users/<%= @user.id %>/tweets/new' method = 'post'>
+  <input type = "text" name = "tweet">
+  <input type="submit" value="New Tweet">
+</form>
+
+<% @tweets.each do |tweet| %>
+  <p><%= tweet.description %></p>
+  <% end %>
 
 </div>
