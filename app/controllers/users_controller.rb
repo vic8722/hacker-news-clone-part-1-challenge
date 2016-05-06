@@ -9,16 +9,16 @@ end
 post '/login' do
    @user = User.find_by_email(params[:email])
    if @user.authenticate(params[:password])
-     session[:id] = @user.id
+     session[:user_id] = @user.id
      session[:username] = @user.username
-     redirect '/users/show'
+     redirect "/users/#{@user.id}"
    else
      redirect '/'
    end
  end
 
  post '/logout' do
-   session[:id] = nil
+   session[:user_id] = nil
    redirect '/'
  end
 
@@ -35,8 +35,9 @@ get '/register' do
   erb :'users/new'
 end
 
-get '/user/profile' do
-   if session[:id]
+get '/users/:id' do
+  @user = User.find(params[:id])
+   if session[:user_id] == @user.id
      erb :'users/show'
    else
      redirect '/login'
@@ -44,18 +45,27 @@ get '/user/profile' do
   erb :'users/show'
 end
 
-post '/users_new' do
-  redirect '/users/login'
+get '/users/:id/edit' do
+  if session[:user_id] == @user.id
+    @user = User.find(params[:id])
+    erb :'users/edit'
+  else
+    redirect '/login'
+  end
 end
 
-get '/user/:id/edit' do
-  erb :'user/edit'
+put '/edit_user/:id' do
+  user = User.find(params[:id])
+  user.update(params[:user])
+  redirect "/users/#{user.id}"
 end
 
-put '/user_id' do
-  redirect '/user/profile'
-end
-
-delete 'users/:id' do
-  redirect '/users/login'
+delete '/delete_account/:id' do
+  if session[:user_id] == @user.id
+    user = User.find(params[:id])
+    user.destroy
+    redirect '/login'
+  else
+    redirect '/login'
+  end
 end
