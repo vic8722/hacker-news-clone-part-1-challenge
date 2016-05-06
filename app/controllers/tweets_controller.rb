@@ -5,8 +5,7 @@ end
 post '/users/:user_id/tweets/new' do
   @user = User.find(params[:user_id])
   @tweet = Tweet.create(description: params[:tweet])
-  user_tweet = TweetsUser.find_by(tweet_id: @tweet.id)
-  user_tweet.update(user_id: params[:user_id])
+  user_tweet = TweetsUser.create(tweet_id: @tweet.id, user_id: @user.id)
 
   redirect "/users/#{@user.id}"
 end
