@@ -1,0 +1,13 @@
+<div class="container" align="center">
+<h1>Edit Account</h1>
+<form action = '/edit_user/<%= @user.id%>' method = 'post'>
+<input type="hidden" name="_method" value="put">
+  Username:<br>
+  <input type = "text" name = "user[username]" value="<%= @user.username %>"><br><br>
+  Email:<br>
+  <input type = "email" name = "user[email]" value="<%= @user.email %>"><br><br>
+  Password:<br>
+  <input type = "password" name = "password" value=""><br><br>
+  <input type="submit" value="Submit">
+</form>
+</div>

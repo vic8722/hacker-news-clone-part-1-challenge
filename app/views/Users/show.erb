@@ -1,0 +1,28 @@
+<div align="center">
+
+<h1>Welcome to the "secret page" <%= session[:username] %>!!!</h1>
+
+<% if session[:user_id] == @user.id %>
+  <a href="/users/<%= @user.id %>/edit">Edit</a>
+
+  <form method="post" action="/delete_account/<%= @user.id %>"><input type="hidden" name="_method" value="delete"><button>Delete Account</button></form>
+
+  <form action = '/logout' method = 'post'>
+    <input type="submit" value="Logout">
+  </form>
+<% end %>
+</div>
+
+<br><br>
+
+<div>
+<form action = '/users/<%= @user.id %>/tweets/new' method = 'post'>
+  <input type = "text" name = "tweet">
+  <input type="submit" value="New Tweet">
+</form>
+
+<% @tweets.each do |tweet| %>
+  <p><%= tweet.description %></p>
+  <% end %>
+
+</div>
