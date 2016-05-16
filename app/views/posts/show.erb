@@ -1,0 +1,41 @@
+
+<div>
+  <H1><%= @post.title %></H1>
+  <br>
+  <%= @post.body %>
+  <br>
+
+  user: <a href="/users/<%= @post.user.id %>"><%= @post.user.username %></a>
+  <br>
+  <%= @post.created_at.strftime("%H:%M %m-%d-%Y") %>
+</div>
+
+<br>
+<br>
+<br>
+<br>
+
+<div>
+  <% if @post.comments && !@post.comments.empty? %>
+    <% @post.comments.each do |comment| %>
+      <div>
+        <%= comment.body %>
+        <br>
+        user: <a href="/users/<%= comment.user.id %>"><%= comment.user.username %></a>
+        <br>
+        <%= comment.created_at.strftime("%H:%M %m-%d-%Y") %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
+
+<br>
+<br>
+<br>
+<br>
+
+<% if session[:id] %>
+  <a href="/posts/<%=@post.id%>/comments/new"><button type="button">Add comment</button></a>
+
+<% end %>

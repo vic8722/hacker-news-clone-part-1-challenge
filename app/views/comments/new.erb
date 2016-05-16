@@ -1,0 +1,17 @@
+<H1>Register</H1>
+
+  <div class="errors">
+    <% if @comment && @comment.errors %>
+      <ul>
+      <% @comment.errors.full_messages.each do |error| %>
+        <li><%= error %></li>
+      <% end %>
+      </ul>
+    <% end %>
+  </div>
+
+<form action="/posts/<%=params[:post_id]%>/comments" method="post">
+  Comment: <textarea name="comment"></textarea>
+  <br>
+  <input type="submit" value="Submit">
+</form>

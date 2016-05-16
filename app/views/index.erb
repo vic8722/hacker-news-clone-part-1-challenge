@@ -1,0 +1,12 @@
+<H1>Hacker News</H1>
+
+<% @posts.each do |post| %>
+<div>
+  <a href="/posts/<%= post.id %>"><strong><%= post.title %></strong></a>
+  <br>
+
+  user: <a href="/users/<%= post.user.id %>"><%= post.user.username %></a>
+  <br>
+  <%= post.created_at.strftime("%H:%M %m-%d-%Y") %>
+</div>
+<% end %>

@@ -1,0 +1,40 @@
+
+<div>
+  <H1><%= @user.username %></H1>
+  <br>
+  Account created: <%= @user.created_at.strftime("%H:%M %m-%d-%Y") %>
+</div>
+
+<br>
+<br>
+<br>
+<br>
+
+<div>
+  <% if !@user.comments.empty? %>
+  <H2>Comments</H2>
+    <% @user.comments.each do |comment| %>
+      <div>
+        <%= comment.body %>
+        <br>
+        post: <a href="/posts/<%= comment.post.id %>"><strong><%= comment.post.title %></strong></a>
+        <br>
+        <%= comment.created_at.strftime("%H:%M %m-%d-%Y") %>
+      </div>
+    <% end %>
+  <% end %>
+
+</div>
+
+<div>
+  <% if !@user.posts.empty? %>
+  <H2>Posts</H2>
+    <% @user.posts.each do |post| %>
+      <div>
+        <a href="/posts/<%= post.id %>"><strong><%= post.title %></strong></a>
+        <br>
+        <%= post.created_at.strftime("%H:%M %m-%d-%Y") %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
