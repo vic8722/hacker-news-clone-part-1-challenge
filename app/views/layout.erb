@@ -20,7 +20,8 @@
 <nav>
 <a href="/"><button type="button">Home</button></a>
 <% if current_user %>
-<a href="/users/<%=session[:id]%>"><button type="button">Profile</button></a>
+<a href="/users/<%=session[:id]\
+ NGHH GBV%>"><button type="button">Profile</button></a>
 <a href="/users/logout"><button type="button">Logout</button></a>
 <% else %>
 <a href="/users/login"><button type="button">Login</button></a>
